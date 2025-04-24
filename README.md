@@ -179,13 +179,14 @@ Total Functional Points = 74
 
 
 Cyclomatic Complexity ,cc
+
 calculated using the formula:
-CC = E - N + 2 * P
+CC = e - n + 2 * p
 
 Where:
-E = Number of edges (transitions between decision points)
-N = Number of nodes (decision points or blocks)
-P = Number of connected components (typically 1)
+e = Number of edges (transitions between decision points)
+n = Number of nodes (decision points or blocks)
+p = Number of connected components (typically 1)
 Cyclomatic Complexity Calculation per File:
 
 index.php: Cyclomatic Complexity (CC) = 3
@@ -218,10 +219,12 @@ Total Cyclomatic Complexity = 3 * 8 = 24
 Thus, the total Cyclomatic Complexity of the application is 24.
 
 Cohesion Measurement.
+
 Analysis:The modules in the software have a moderate cohesion level, as most functions in a given module serve a single purpose e.g., either handling user input, processing product data, processing  user data, handling booking data. However, some scripts mix multiple responsibilities , slightly reducing cohesion.
 Score: Moderate (Functional Cohesion).
 
 Coupling (Module Interdependence):  
+
  NanaAgricFarm maintains loose coupling by keeping database queries and business logic in separate PHP functions. For example, the `getUserEngagementReport()` function interacts with the `user_activity` table but doesn’t modify unrelated tables, ensuring that changes in one module do not adversely affect others.  
 
 Data Structure Complexity Measurement:
@@ -229,6 +232,7 @@ Analysis: The software mainly relies on simple arrays,integers,strings and assoc
 Score: Low
 
 Depth of Nesting
+
 Definition:
 This metric evaluates how deeply nested the control structures are (loops, if-else).  
 
@@ -256,6 +260,26 @@ Reducing nesting depth improves readability and reduces error-prone code section
          The users table is referenced by the booking table, contributing to higher fan-in, which indicates the number of modules that can affect a particular module.  
        Fan-out: 
          The products table influences multiple operations, including bookings, availability checks, and order tracking, demonstrating how changes in one module can impact others.
+
+##System Architecture and Control Flow
+
+Graph Representation: 
+ The application follows a modular approach where key components (Users, Products, Bookings) interact through well-defined relationships, making it easier to manage and scale.  
+
+Finite State Machine (FSM) Analysis:  
+The booking system transitions through various states:  
+   Pending → Confirmed (Admin approval required)  
+   Pending → Cancelled (User cancels before confirmation)  
+   Confirmed → Completed (Final stage after order fulfillment).
+
+ Performance and Logging Metrics
+
+User Activity Logging:  
+ The application tracks login frequency and engagement using timestamps in the user_activity table, allowing for better insights into user behavior.  
+
+Booking Response Time: 
+ The system measures the average time taken to confirm bookings, helping identify performance bottlenecks and improve user experience.
+
 ## Measuring External Product Attributes.
 software Quality Measurement Based on ISO 9126 quality model
 1. Functionality (Score: 4.2/5)
