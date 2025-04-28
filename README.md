@@ -442,10 +442,11 @@ Reliability at t = 100 minutes: 0.5487
 
 
 Software Test Metrics
+
 Unit testing:
 Each function in our system (e.g., adding to cart, updating stock, calculating totals) needed to be independently tested to ensure it worked correctly in isolation.
 
-✔ How we implemented Unit Testing:
+How we implemented Unit Testing:
 We identified small units of functionality, such as: Add to Cart function, Checkout function
 
 For each function, we carried out individual tests to verify that: The correct product is added to the cart, The cart total is calculated correctly, The stock reduces appropriately after an order.
@@ -455,7 +456,7 @@ Expected output: Cart shows "Tomatoes: 3 items."
 
 Different modules (Login, Product Catalog, Cart, Payment, Inventory) needed to work correctly together as a complete flow.
 
-✔ How we implemented Integration Testing:
+How we implemented Integration Testing:
 We designed test cases that combined modules.
 
 We focused on testing data flow between components, such as:
@@ -468,11 +469,72 @@ After payment, the inventory updates.
 
 We used manual testing by simulating real user flows step-by-step and verifying database updates.
 
-✔ Example:
+Example:
 Login → Select "Fresh Maize" → Add to cart → Checkout → Payment successful → Inventory reduced.
 
+ System Testing
+ 
+Why it was needed:
+We needed to test the complete system as a whole to verify it meets the expected functional and non-functional requirements.
 
-According to our lecture material:
+How we implemented System Testing:
+We acted like real customers, going through the entire shopping process.
+
+We tested:
+
+User Registration,
+Login,
+Browsing Categories (Vegetables, Fruits, Livestock),
+Searching Products,
+Adding to Cart,
+Payment and Order Confirmation
+
+We ensured the system behaved correctly at each stage.
+
+Example:
+New user signs up → Logs in → Buys "Organic Milk" → Completes order → Sees order confirmation page.
+
+ Acceptance Testing
+   
+Why it was needed:
+Acceptance Testing ensures the system matches the original project requirements and business needs (what a real farm shop would expect).
+
+How we implemented Acceptance Testing:
+
+We created a checklist based on the project requirements.
+
+We tested each feature to verify if it fulfilled the needs.
+
+If a feature failed to meet the expectation, we recorded it and corrected the system before re-testing.
+
+Example:
+
+Requirement	                                      Test Result
+Customers can view farm products in categories	   Passed
+Customers can add multiple products to cart     	 Passed
+Customers receive confirmation after purchase	     Passed
+Admin can update inventory after sale           	 Passed
+
+ Regression Testing
+   
+Why it was needed:
+Each time we fixed a bug or added a new feature (e.g., discount coupons), we had to ensure that existing features still worked without introducing new errors.
+
+How we implemented Regression Testing:
+After every system update, we re-ran previously passed test cases.
+
+We paid special attention to critical modules like Cart, Checkout, and Payment.
+
+We maintained a Test Execution Log to track old and new test results after every change.
+
+Example:
+After introducing "10% off for new customers" discount:
+
+We tested that normal purchases without discounts still worked correctly.
+
+We tested that inventory still reduced appropriately after checkout.
+
+Test Case estimation
 
 We calculate the number of test cases based on two factors:
 
@@ -598,132 +660,15 @@ Detected Seeded Defects (n_s): 16.
 
 Detected Real Defects (n_d): 48.
 
-N
-d
-=
-(
-n
-d
-n
-s
-)
-×
-N
-s
-=
-(
-48
-16
-)
-×
-20
-=
-60
- total defects
-N 
-d
-​
- =( 
-n 
-s
-​
- 
-n 
-d
-​
- 
-​
- )×N 
-s
-​
- =( 
-16
-48
-​
- )×20=60 total defects
-N
-r
-=
-(
-N
-d
-−
-n
-d
-)
-+
-(
-N
-s
-−
-n
-s
-)
-=
-(
-60
-−
-48
-)
-+
-(
-20
-−
-16
-)
-=
-16
- remaining defects
-N 
-r
-​
- =(N 
-d
-​
- −n 
-d
-​
- )+(N 
-s
-​
- −n 
-s
-​
- )=(60−48)+(20−16)=16 remaining defects
+Nd = (nd/ns)xNs = (48/16)x20 = 60 total defects
+
+Nr = (Nd-nd)+(Ns-ns) = (60-48) + (20-16) = 16 remaining defects
 Conclusion: ~16 undetected defects expected post-release.
 
 b) Phase Containment Effectiveness (PCE)
 For the Requirements Phase:
 
-P
-C
-E
-=
-(
-Defects Removed
-Defects Introduced
-)
-×
-100
-=
-(
-9
-12
-)
-×
-100
-=
-75
-%
-PCE=( 
-Defects Introduced
-Defects Removed
-​
- )×100=( 
-12
-9
-​
- )×100=75%
+PCE = (Defects removed)/(Defects introduced)x100 = (9/12)x100 = 75%
 Design Phase PCE: 42.9% (needed improvement via peer reviews).
 
 
